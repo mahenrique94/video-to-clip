@@ -8,17 +8,18 @@ A python program to create clips for reels/shorts/tiktok from a youtube video.
 python3 -m venv .venv
 ```
 
+### Active the python env
+```
+source ./.venv/bin/activate
+```
+
 ### Install all dependencies
 ```
 pip3 install -r requirements.txt
 ```
 
 ## Usage
-To starting the process you just need to active the new python env and run `main.py` file providing a youtube video id:
-
-```
-source ./.venv/bin/activate
-```
+To starting the process you just need run `main.py` file providing a youtube video id:
 
 ```
 python3 main.py --video [YOUTUBE_VIDEO_ID]
