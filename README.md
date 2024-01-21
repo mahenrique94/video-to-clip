@@ -14,7 +14,11 @@ pip3 install -r requirements.txt
 ```
 
 ## Usage
-To starting the process you just need to provide a youtube video id:
+To starting the process you just need to active the new python env and run `main.py` file providing a youtube video id:
+
+```
+source ./.venv/bin/activate
+```
 
 ```
 python3 main.py --video [YOUTUBE_VIDEO_ID]

@@ -133,7 +133,6 @@ def export_clips(video_clip: VideoFileClip, clip_folder: str):
     create_diarization_video(transcription, video_clip, clip_folder, exported_folder)
 
   video_clip.close()
-  raise RuntimeError("TERMINOU O PRIMEIRO CLIP !!!")
 
 
 split_video()
