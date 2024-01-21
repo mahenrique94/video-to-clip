@@ -2,6 +2,8 @@ from moviepy.editor import *
 
 import json
 
+from utils import text_clip_outside_stroke
+
 
 def split_text_into_lines(data):
 
@@ -65,7 +67,7 @@ def split_text_into_lines(data):
     return subtitles
 
 
-def create_caption(textJSON, framesize,font = "Courier-New-Bold",fontsize=70):
+def create_caption(textJSON, framesize,font = "Arial-Rounded-MT-Bold",fontsize=54):
     full_duration = textJSON['end']-textJSON['start']
 
     word_clips = []
@@ -84,8 +86,8 @@ def create_caption(textJSON, framesize,font = "Courier-New-Bold",fontsize=70):
 
     for _,wordJSON in enumerate(textJSON['textcontents']):
       duration = wordJSON['end']-wordJSON['start']
-      word_clip = TextClip(wordJSON['word'], font = font,fontsize=fontsize, color="yellow", stroke_width=1, stroke_color = "black").set_start(textJSON['start']).set_duration(full_duration)
-      word_clip_space = TextClip(" ", font = font,fontsize=fontsize, color="yellow", stroke_width=1, stroke_color = "black").set_start(textJSON['start']).set_duration(full_duration)
+      word_clip = text_clip_outside_stroke(wordJSON['word']).set_start(textJSON['start']).set_duration(full_duration)
+      word_clip_space = text_clip_outside_stroke(" ").set_start(textJSON['start']).set_duration(full_duration)
       word_width, word_height = word_clip.size
       space_width,space_height = word_clip_space.size
       if x_pos + word_width+ space_width > frame_width-2*x_buffer:
@@ -133,7 +135,7 @@ def create_caption(textJSON, framesize,font = "Courier-New-Bold",fontsize=70):
 
     for highlight_word in xy_textclips_positions:
       
-      word_clip_highlight = TextClip(highlight_word['word'], font = font,fontsize=fontsize+16, color="white",bg_color = "blue", stroke_width=1, stroke_color = "white").set_start(highlight_word['start']).set_duration(highlight_word['duration'])
+      word_clip_highlight = TextClip(highlight_word['word'], font = font,fontsize=fontsize+4, color="white",bg_color = "blue", stroke_width=1, stroke_color = "white").set_start(highlight_word['start']).set_duration(highlight_word['duration'])
       word_clip_highlight = word_clip_highlight.set_position((highlight_word['x_pos'], highlight_word['y_pos']))
       word_clips.append(word_clip_highlight)
 
