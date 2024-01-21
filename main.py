@@ -7,7 +7,7 @@ import os
 import shutil
 import whisper
 
-from utils import create_subtitle_video, create_word_by_word_video, download_youtube_video, rescale_video
+from utils import create_subtitle_video, create_word_by_word_video, download_youtube_video
 from yt import create_diarization_video
 
 
